@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/layout :: head"></head>
+
+<body>
+
+<h2>Delete Product</h2>
+
+<form th:action="@{/products/delete}"
+      th:object="${product}"
+      method="post">
+
+    <input type="hidden"
+           th:field="*{id}">
+
+    <p>
+
+        Are you sure?
+
+    </p>
+
+    <p th:text="${product.name}"></p>
+
+    <input type="submit"
+           value="Delete">
+
+</form>
+
+</body>
+</html>
