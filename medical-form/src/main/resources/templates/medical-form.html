@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tờ khai y tế</title>
+</head>
+<body>
+
+<h2>Tờ khai y tế</h2>
+
+<form th:action="@{/medical/save}" th:object="${medicalForm}" method="post">
+
+    Họ tên:
+    <input type="text" th:field="*{fullName}">
+    <span style="color:red" th:errors="*{fullName}"></span>
+    <br><br>
+
+    Năm sinh:
+    <input type="text" th:field="*{birthYear}">
+    <span style="color:red" th:errors="*{birthYear}"></span>
+    <br><br>
+
+    Giới tính:
+    <input type="text" th:field="*{gender}">
+    <span style="color:red" th:errors="*{gender}"></span>
+    <br><br>
+
+    Quốc tịch:
+    <input type="text" th:field="*{nationality}">
+    <span style="color:red" th:errors="*{nationality}"></span>
+    <br><br>
+
+    CMND/Hộ chiếu:
+    <input type="text" th:field="*{idCard}">
+    <span style="color:red" th:errors="*{idCard}"></span>
+    <br><br>
+
+    Địa chỉ:
+    <input type="text" th:field="*{address}">
+    <span style="color:red" th:errors="*{address}"></span>
+    <br><br>
+
+    Điện thoại:
+    <input type="text" th:field="*{phone}">
+    <span style="color:red" th:errors="*{phone}"></span>
+    <br><br>
+
+    Email:
+    <input type="text" th:field="*{email}">
+    <span style="color:red" th:errors="*{email}"></span>
+    <br><br>
+
+    <button type="submit">Gửi tờ khai</button>
+
+</form>
+
+</body>
+</html>
