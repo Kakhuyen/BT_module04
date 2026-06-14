@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.codegym'
+version = '1.0-SNAPSHOT'
+
+ext {
+    junitVersion = '5.10.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs << '-parameters'
+    }
+}
+
+dependencies {
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    implementation 'org.springframework:spring-webmvc:6.2.8'
+    implementation 'org.springframework:spring-web:6.2.8'
+    implementation 'org.springframework:spring-context:6.2.8'
+    implementation 'org.springframework:spring-beans:6.2.8'
+    implementation 'org.springframework:spring-core:6.2.8'
+
+    implementation 'org.thymeleaf:thymeleaf-spring6:3.1.2.RELEASE'
+    implementation 'org.thymeleaf:thymeleaf:3.1.2.RELEASE'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0'
+
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+    implementation 'org.springframework.data:spring-data-jpa:3.4.2'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+war {
+    archiveFileName = "${project.name}.war"
+}
