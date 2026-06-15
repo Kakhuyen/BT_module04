@@ -1,10 +1,7 @@
 package com.codegym.blog.configuration;
 
-import com.codegym.blog.service.BlogService;
-import com.codegym.blog.service.BlogServiceImpl;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -31,8 +28,9 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan("com.codegym.blog.controller")
-@EnableJpaRepositories("com.codegym.blog.repository") // Hỗ trợ tạo tự động các bean Repository (Bước 8)
+
+@ComponentScan("com.codegym.blog")
+@EnableJpaRepositories("com.codegym.blog.repository")
 public class ApplicationConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -46,7 +44,7 @@ public class ApplicationConfig implements WebMvcConfigurer, ApplicationContextAw
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/"); // Nơi chứa các file HTML
+        templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
@@ -83,7 +81,7 @@ public class ApplicationConfig implements WebMvcConfigurer, ApplicationContextAw
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.codegym.blog.model"); // Nơi chứa các class Model/Entity (Bước 4)
+        em.setPackagesToScan("com.codegym.blog.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -100,16 +98,11 @@ public class ApplicationConfig implements WebMvcConfigurer, ApplicationContextAw
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-        // Tự động tạo hoặc cập nhật bảng trong CSDL
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        // Hiển thị câu lệnh SQL trong console để dễ debug
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return properties;
     }
 
-    @Bean
-    public BlogService blogService() {
-        return new BlogServiceImpl();
-    }
+
 }

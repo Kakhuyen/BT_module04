@@ -1,18 +1,24 @@
 package com.codegym.blog.service;
 
 import com.codegym.blog.model.Blog;
+import com.codegym.blog.model.Category;
 import com.codegym.blog.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogRepository blogRepository;
 
     @Override
-    public List<Blog> findAll() {
+    public Iterable<Blog> findAllByCategory(Category category) {
+        return blogRepository.findAllByCategory(category);
+    }
+
+    @Override
+    public Iterable<Blog> findAll() {
         return blogRepository.findAll();
     }
 

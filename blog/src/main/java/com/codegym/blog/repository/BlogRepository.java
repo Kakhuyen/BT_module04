@@ -1,7 +1,13 @@
 package com.codegym.blog.repository;
 
 import com.codegym.blog.model.Blog;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.codegym.blog.model.Category;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface BlogRepository extends JpaRepository<Blog, Long> {
+@Repository
+public interface BlogRepository extends CrudRepository<Blog, Long> {
+
+    Iterable<Blog> findAllByCategory(Category category);
+
 }
