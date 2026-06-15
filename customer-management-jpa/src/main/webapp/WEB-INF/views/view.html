@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>DetailCustomer</title>
+</head>
+<body>
+<div class="container mt-4">
+    <h3 class="bg-primary text-white p-2 mb-4">View Customer</h3>
+    <p>
+        <a th:href="@{/customers}" class="btn btn-secondary btn-sm">Back to customer list</a>
+    </p>
+    <div class="card col-md-6">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Customer Details</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-3 row border-bottom pb-2">
+                <label class="col-sm-3 col-form-label fw-bold">Name:</label>
+                <div class="col-sm-9">
+                    <p class="form-control-plaintext mb-0" th:text="${customer.name}"></p>
+                </div>
+            </div>
+            <div class="mb-3 row border-bottom pb-2">
+                <label class="col-sm-3 col-form-label fw-bold">Email:</label>
+                <div class="col-sm-9">
+                    <p class="form-control-plaintext mb-0" th:text="${customer.email}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom pb-2">
+                <label class="col-sm-3 col-form-label fw-bold">Address:</label>
+                <div class="col-sm-9">
+                    <p class="form-control-plaintext mb-0" th:text="${customer.address}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a th:href="@{/customers/{id}/edit(id=${customer.id})}" class="btn btn-warning btn-sm">Edit</a>
+        </div>
+    </div>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
