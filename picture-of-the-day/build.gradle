@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.codegym'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Web MVC (Phiên bản 6.x đi kèm Jakarta)
+    implementation 'org.springframework:spring-webmvc:6.1.4'
+
+    // Spring Data JPA & Hibernate
+    implementation 'org.springframework.data:spring-data-jpa:3.2.3'
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // Thymeleaf cho Spring 6
+    implementation 'org.thymeleaf:thymeleaf-spring6:3.1.2.RELEASE'
+
+    // AspectJ (AOP) để dùng @EnableAspectJAutoProxy
+    implementation 'org.aspectj:aspectjweaver:1.9.21'
+
+    // MySQL Connector
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+
+    // Jakarta Servlet API (Dành cho Tomcat 10 trở lên)
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+}
+
+test {
+    useJUnitPlatform()
+}
