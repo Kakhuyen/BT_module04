@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.codegym'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Web MVC
+    implementation 'org.springframework:spring-webmvc:6.1.4'
+
+    // Spring Data JPA
+    implementation 'org.springframework.data:spring-data-jpa:3.2.3'
+
+    // Hibernate Core
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // MySQL Driver
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+
+    // Thymeleaf cho Spring 6
+    implementation 'org.thymeleaf:thymeleaf-spring6:3.1.2.RELEASE'
+
+    // Servlet API
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // Testing
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
